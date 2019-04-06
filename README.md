@@ -11,17 +11,19 @@ Features:
 
 Background:
 For my masters' thesis I had to analyse a lot of data and plot a lot of correlations.
-Like many others, I did this with Python (pandas, sklearn, matplotlib, etc.) and LaTeX.
+Like many others, I did this with Python ([pandas](https://pandas.pydata.org/), 
+[scikit-learn](https://scikit-learn.org/), [matplotlib](https://matplotlib.org/), etc.) and LaTeX.
 I then created many scripts with a lot of dependencies, ran them, and copied all files into the right place afterwards.
 This soon became a cumbersome task and made it hard to update the data.
 Not to speak of the inability to work with my supervisor.
 
 There had to be a better way.
 So I used [cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science),
-a framework for reproducable data analysis,
+a framework for reproducible data analysis (via [GNU make](https://www.gnu.org/software/make/)),
 and integrated LaTeX generation for my thesis.
 
-This framework has since been used by may of my friends, colleagues, and bachelor students for academic and corporate work.
+This framework has since been used by many of my friends, colleagues, and bachelor/master students for academic and 
+corporate work (at my startup [First Momentum](https://firstmomentum.vc)).
 
 Install with Docker
 ------------
@@ -41,7 +43,27 @@ docker exec -ti (container name) bash
 
 Usage
 ------------
-Every step should be defined in the makefile. You can thus just run `make` and decide what you want to create.
+Every step should be defined in the makefile. 
+You can thus just run `make` and decide what you want to create.
+To run the example just
+```
+make reports/document.pdf
+```
+to find an auto-created document including Chuck Norris jokes.
+
+### How it works:
+Make deducts which steps are necessary to create the pdf file.
+This is done via all rules defined in the Makefile.
+To generate the example, the following steps are executed:
+
+1. Fetch the jokes from an API in src/data/fetch_jokes.py and store it as JSON.
+2. Make interim DataFrame from JSON.
+3. Make processed file (currently only copies, this usually deducts features).
+4. Generate jokes table in tex from the processed jokes DataFrame (in data/processed).
+5. Generate jokes list in tex via the jinja template and the processed jokes DataFrame.
+6. Generate PDF with the document.tex file that includes two generated tex files.
+
+As you can see, the whole process is executed automatically which saves you many steps when your data changes.
 
 Project Organization
 ------------
