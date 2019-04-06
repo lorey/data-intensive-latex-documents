@@ -1,13 +1,13 @@
 Python framework for a data-intensive LaTeX documents
 ==============================
 
-A project structure for a data-intensive, latex-based documents.
+A project structure for a data-intensive, latex-based documents with the ability to generate LaTeX from data 
+automatically.
 
 Features:
-* Fetch and analyse data, and create reports based upon it.
-* Python-based data analysis and document generation in LaTeX all in one place
-* easy collaboration and repeatability through version control and GNU make
-* automatic generation of all tables and figures when data changes
+* structured and repeatable data analysis process via a solid framework.
+* easy collaboration and repeatability through version control and GNU make.
+* automated (re-)generation of LaTeX files based on DataFrames and JSON data (via pandas and Jinja2 templates).
 
 Background:
 
@@ -62,7 +62,7 @@ Installation with Docker
 Be aware that using docker will result in large containers as the LaTeX installation will grow quite big.
 So if you have LaTeX installed anyway, just install it locally.
 
-To install the container:
+To run the container with [docker-compose](https://docs.docker.com/compose/install/):
 
 ```
 docker-compose build
