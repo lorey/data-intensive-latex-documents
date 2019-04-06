@@ -88,10 +88,13 @@ data/interim/jokes.pkl: data/external/jokes.json
 data/processed/jokes.pkl: data/interim/jokes.pkl
 	cp $< $@
 
-reports/tables/jokes-small.tex reports/tables/jokes-large.tex: data/processed/jokes.pkl
+reports/tables-generated/jokes-small.tex reports/tables/jokes-large.tex: data/processed/jokes.pkl
 	$(PYTHON_INTERPRETER) src/reporting/create_jokes_tables.py -output $(subst output,,$@)
 
-reports/document.pdf: reports/document.tex reports/tables/jokes-small.tex
+reports/includes-generated/jokes-list.tex: data/processed/jokes.pkl reports/templates/jokes-list.tex
+	$(PYTHON_INTERPRETER) src/reporting/create_jokes_list.py -output $@
+
+reports/document.pdf: reports/document.tex reports/tables-generated/jokes-small.tex reports/includes-generated/jokes-list.tex
 	pdflatex -interaction=nonstopmode -output-directory reports reports/document.tex
 
 #################################################################################

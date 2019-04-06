@@ -13,7 +13,7 @@ from dotenv import find_dotenv, load_dotenv
 def main(output):
     """ Make jokes tables. """
     logger = logging.getLogger(__name__)
-    logger.info('make jokes')
+    logger.info('make jokes table')
 
     # use full width in output
     pd.set_option('display.max_colwidth', -1)

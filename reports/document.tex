@@ -9,11 +9,20 @@
 \date{April 2019}
 \maketitle
 
-\begin{table}
+\chapter{Examples}
+
+\section{Example: List}
+Following is an example of including a Jinja2-generated list (itemize):
+\input{reports/includes-generated/jokes-list}
+
+\section{Example: Table}
+The following is an auto-generated table:
+\begin{table}[h]
 \centering
 {\small
-\input{reports/tables/jokes-small}
+\input{reports/tables-generated/jokes-small}
 }
 \caption{A small table with jokes.}
 \end{table}
+
 \end{document}

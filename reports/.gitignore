@@ -1,2 +1,3 @@
-*.aux
-*.pdf
+*-generated/*
+document.aux
+document.pdf
