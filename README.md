@@ -10,6 +10,7 @@ Features:
 * automatic generation of all tables and figures when data changes
 
 Background:
+
 For my masters' thesis I had to analyse a lot of data and plot a lot of correlations.
 Like many others, I did this with Python ([pandas](https://pandas.pydata.org/), 
 [scikit-learn](https://scikit-learn.org/), [matplotlib](https://matplotlib.org/), etc.) and LaTeX.
@@ -25,11 +26,12 @@ and integrated LaTeX generation for my thesis.
 This framework has since been used by many of my friends, colleagues, and bachelor/master students for academic and 
 corporate work (at my startup [First Momentum](https://firstmomentum.vc)).
 
-Install with Docker
+Installation with Docker
 ------------
 Be aware that using docker will result in large containers as the LaTeX installation will grow quite big.
+So if you have LaTeX installed anyway, just install it locally.
 
-To install:
+To install the container:
 
 ```
 docker-compose build
@@ -41,11 +43,27 @@ To use docker, enter a bash inside the newly created container:
 docker exec -ti (container name) bash
 ```
 
+Local installation
+------------
+If you don't want to use docker, e.g. to save disk-space, just install LaTeX or use your existing installation.
+To run python, create and activate a virtual environment:
+```
+pip install virtualenv
+virtualenv -p /usr/bin/pyhton3 venv
+source venv/bin/active
+```
+
 Usage
 ------------
-Every step should be defined in the makefile. 
-You can thus just run `make` and decide what you want to create.
-To run the example just
+Every step is defined in the makefile. 
+You can thus just run `make tagetfile` and make will take care of the rest.
+
+To get started, you have to install the the requirements with
+```
+make requirements
+```
+
+Then, to generate our example document:
 ```
 make reports/document.pdf
 ```
