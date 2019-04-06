@@ -1,0 +1,19 @@
+\documentclass[11pt,a4paper]{report}
+
+% needed for pandas latex table export
+\usepackage{booktabs}
+
+\begin{document}
+\title{Automated report generation in LaTeX}
+\author{Karl Lorey}
+\date{April 2019}
+\maketitle
+
+\begin{table}
+\centering
+{\small
+\input{reports/tables/jokes-small}
+}
+\caption{A small table with jokes.}
+\end{table}
+\end{document}

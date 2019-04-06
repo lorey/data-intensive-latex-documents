@@ -79,7 +79,20 @@ test_environment:
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
+data/external/jokes.json:
+	$(PYTHON_INTERPRETER) src/data/fetch_jokes.py
 
+data/interim/jokes.pkl: data/external/jokes.json
+	$(PYTHON_INTERPRETER) src/data/make_jokes.py
+
+data/processed/jokes.pkl: data/interim/jokes.pkl
+	cp $< $@
+
+reports/tables/jokes-small.tex reports/tables/jokes-large.tex: data/processed/jokes.pkl
+	$(PYTHON_INTERPRETER) src/reporting/create_jokes_tables.py -output $(subst output,,$@)
+
+reports/document.pdf: reports/document.tex reports/tables/jokes-small.tex
+	pdflatex -interaction=nonstopmode -output-directory reports reports/document.tex
 
 #################################################################################
 # Self Documenting Commands                                                     #
