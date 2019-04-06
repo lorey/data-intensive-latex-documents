@@ -26,6 +26,37 @@ and integrated LaTeX generation for my thesis.
 This framework has since been used by many of my friends, colleagues, and bachelor/master students for academic and 
 corporate work (at my startup [First Momentum](https://firstmomentum.vc)).
 
+
+Usage
+------------
+As an example, this project generates a document with Chuck Norris jokes.
+To get started, you have to install the the requirements with
+```
+make requirements
+```
+
+Then, to generate our example document:
+```
+make reports/document.pdf
+```
+to find an auto-created document including Chuck Norris jokes.
+
+### How it works:
+Make deducts which steps are necessary to create the pdf file.
+This is done via all rules defined in the Makefile.
+To generate the example, the following steps are executed:
+
+1. Fetching jokes from [an API](https://api.chucknorris.io/) in [`src/data/fetch_jokes.py`](src/data/fetch_jokes.py) 
+and storing them as JSON.
+2. Generating an interim DataFrame from the JSON file.
+3. Making a processed DataFrame (currently only copies, usually includes feature deduction).
+4. Generate jokes table in tex from the processed jokes DataFrame (in data/processed).
+5. Generate jokes list in tex via the jinja template and the processed jokes DataFrame.
+6. Generate PDF with the document.tex file that includes two generated tex files.
+
+As you can see, the whole process is executed automatically which saves you many steps when your data changes.
+
+
 Installation with Docker
 ------------
 Be aware that using docker will result in large containers as the LaTeX installation will grow quite big.
@@ -43,6 +74,7 @@ To use docker, enter a bash inside the newly created container:
 docker exec -ti (container name) bash
 ```
 
+
 Local installation
 ------------
 If you don't want to use docker, e.g. to save disk-space, just install LaTeX or use your existing installation.
@@ -53,35 +85,6 @@ virtualenv -p /usr/bin/pyhton3 venv
 source venv/bin/active
 ```
 
-Usage
-------------
-Every step is defined in the makefile. 
-You can thus just run `make tagetfile` and make will take care of the rest.
-
-To get started, you have to install the the requirements with
-```
-make requirements
-```
-
-Then, to generate our example document:
-```
-make reports/document.pdf
-```
-to find an auto-created document including Chuck Norris jokes.
-
-### How it works:
-Make deducts which steps are necessary to create the pdf file.
-This is done via all rules defined in the Makefile.
-To generate the example, the following steps are executed:
-
-1. Fetch the jokes from an API in src/data/fetch_jokes.py and store it as JSON.
-2. Make interim DataFrame from JSON.
-3. Make processed file (currently only copies, this usually deducts features).
-4. Generate jokes table in tex from the processed jokes DataFrame (in data/processed).
-5. Generate jokes list in tex via the jinja template and the processed jokes DataFrame.
-6. Generate PDF with the document.tex file that includes two generated tex files.
-
-As you can see, the whole process is executed automatically which saves you many steps when your data changes.
 
 Project Organization
 ------------
