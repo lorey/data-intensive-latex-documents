@@ -32,7 +32,11 @@ RUN apt-get update && \
   cabextract \
   xfonts-utils \
   libimage-exiftool-perl
-RUN apt-get install --yes python3
+
+# install the python stuff (second step to leverage caching)
+RUN apt-get install --yes python3 python3-pip
+
+# clean up
 RUN apt-get autoclean && apt-get --purge --yes autoremove && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
