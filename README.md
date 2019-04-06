@@ -1,10 +1,11 @@
-Python framework for a data-intensive thesis/report in LaTeX
+Python framework for a data-intensive LaTeX documents
 ==============================
 
-A project structure for a data-intensive, latex-based thesis/report.
+A project structure for a data-intensive, latex-based documents.
 
 Features:
-* Python-based data analysis and thesis generation in LaTeX all in one place
+* Fetch and analyse data, and create reports based upon it.
+* Python-based data analysis and document generation in LaTeX all in one place
 * easy collaboration and repeatability through version control and GNU make
 * automatic generation of all tables and figures when data changes
 
@@ -21,6 +22,26 @@ a framework for reproducable data analysis,
 and integrated LaTeX generation for my thesis.
 
 This framework has since been used by may of my friends, colleagues, and bachelor students for academic and corporate work.
+
+Install with Docker
+------------
+Be aware that using docker will result in large containers as the LaTeX installation will grow quite big.
+
+To install:
+
+```
+docker-compose build
+docker-compose up -d
+```
+
+To use docker, enter a bash inside the newly created container:
+```
+docker exec -ti (container name) bash
+```
+
+Usage
+------------
+Every step should be defined in the makefile. You can thus just run `make` and decide what you want to create.
 
 Project Organization
 ------------
