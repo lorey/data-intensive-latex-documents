@@ -1,7 +1,12 @@
 \documentclass[11pt,a4paper]{report}
 
+\usepackage{graphicx}
+
 % needed for pandas latex table export
 \usepackage{booktabs}
+
+% use autoref
+\usepackage{hyperref}
 
 \begin{document}
 \title{Automated report generation in LaTeX}
@@ -10,10 +15,6 @@
 \maketitle
 
 \chapter{Examples}
-
-\section{Example: List}
-Following is an example of including a Jinja2-generated list (itemize):
-\input{reports/includes-generated/jokes-list}
 
 \section{Example: Table}
 The following is an auto-generated table:
@@ -24,5 +25,19 @@ The following is an auto-generated table:
 }
 \caption{A small table with jokes.}
 \end{table}
+
+\section{Example: List}
+Following is an example of including a Jinja2-generated list (itemize):
+\input{reports/includes-generated/jokes-list}
+
+\section{Example: Figure}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{reports/figures-generated/histogram.png}
+\caption{A generated histogram of joke lengths.}
+\label{fig:histogram}
+\end{figure}
+
+\autoref{fig:histogram} shows a generated histogram.
 
 \end{document}

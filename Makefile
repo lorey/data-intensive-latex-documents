@@ -94,7 +94,15 @@ reports/tables-generated/jokes-small.tex reports/tables/jokes-large.tex: data/pr
 reports/includes-generated/jokes-list.tex: data/processed/jokes.pkl reports/templates/jokes-list.tex
 	$(PYTHON_INTERPRETER) src/reporting/create_jokes_list.py -output $@
 
-reports/document.pdf: reports/document.tex reports/tables-generated/jokes-small.tex reports/includes-generated/jokes-list.tex
+reports/figures-generated/histogram.png: data/processed/jokes.pkl
+	$(PYTHON_INTERPRETER) src/reporting/create_joke_length_plot.py -output $@
+
+reports/document.tex: \
+	reports/tables-generated/jokes-small.tex \
+	reports/includes-generated/jokes-list.tex \
+	reports/figures-generated/histogram.png
+
+reports/document.pdf: reports/document.tex
 	pdflatex -interaction=nonstopmode -output-directory reports reports/document.tex
 
 #################################################################################

@@ -81,8 +81,8 @@ If you don't want to use docker, e.g. to save disk-space, just install LaTeX or 
 To run python, create and activate a virtual environment:
 ```
 pip install virtualenv
-virtualenv -p /usr/bin/pyhton3 venv
-source venv/bin/active
+virtualenv -p /usr/bin/python3 venv
+source venv/bin/activate
 ```
 
 
