@@ -19,8 +19,8 @@ def main(output):
     pd.set_option('display.max_colwidth', -1)
 
     df_input = pd.read_pickle(path.join(str(project_dir), 'data', 'processed', 'jokes.pkl'))  # type: pd.DataFrame
-    df = pd.DataFrame(df_input, columns=['value'])
-    df = df.rename({'id': 'ID', 'value': 'Joke'}, axis=1)
+    df = pd.DataFrame(df_input, columns=['id', 'length'])
+    df = df.rename({'id': 'ID', 'value': 'Joke', 'length': 'Length'}, axis=1)
     with open(path.join(str(project_dir), output), 'w') as output_file:
         df.to_latex(output_file, index=False, col_space=100)
 

@@ -17,6 +17,8 @@ def main():
     with open(path.join(str(project_dir), 'data', 'external', 'jokes.json')) as file:
         df = json_normalize(json.load(file))
 
+    df['length'] = df['value'].apply(lambda s: len(s))
+
     df.to_pickle(path.join(str(project_dir), 'data', 'interim', 'jokes.pkl'))
 
 

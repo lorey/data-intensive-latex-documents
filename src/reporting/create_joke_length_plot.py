@@ -18,9 +18,8 @@ def main(output):
     logger.info('make jokes plot')
 
     df_input = pd.read_pickle(path.join(str(project_dir), 'data', 'processed', 'jokes.pkl'))  # type: pd.DataFrame
-    df_input['length'] = df_input['value'].apply(lambda s: len(s))
 
-    n, bins, patches = plt.hist(df_input['length'], 5, density=True, facecolor='g', alpha=0.75)
+    n, bins, patches = plt.hist(df_input['length'], 20, density=True, facecolor='g', alpha=0.75)
     plt.xlabel('Joke length in characters')
     plt.ylabel('Probability')
     plt.title('Histogram')
