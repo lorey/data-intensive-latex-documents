@@ -80,7 +80,7 @@ test_environment:
 # PROJECT RULES                                                                 #
 #################################################################################
 data/external/jokes.json:
-	$(PYTHON_INTERPRETER) src/data/fetch_jokes.py
+	$(PYTHON_INTERPRETER) src/data/fetch_jokes.py -count 20
 
 data/interim/jokes.pkl: data/external/jokes.json
 	$(PYTHON_INTERPRETER) src/data/make_jokes.py

@@ -11,13 +11,14 @@ from dotenv import find_dotenv, load_dotenv
 
 
 @click.command()
-def main():
+@click.option('-count', type=click.INT)
+def main(count):
     """ Downloads jokes. """
     logger = logging.getLogger(__name__)
-    logger.info('fetching jokes')
+    logger.info('fetching %d jokes' % count)
 
     jokes = []
-    for i in range(10):
+    for i in range(count):
         response = requests.get('https://api.chucknorris.io/jokes/random')
         jokes.append(response.json())
 
